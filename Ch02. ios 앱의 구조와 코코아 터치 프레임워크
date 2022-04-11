@@ -1,6 +1,47 @@
-## 앱의 기본 구조
+# 앱의 기본 구조
   
-  1. UIApplication
+  1. UIApplication (기업의 회장)
     * 앱의 본체라 할 수 있는 객체
     * 이밴트 루프나 다른 높은 수준의 앱 동작을 관리
     * 푸시 알림과 같은 특수한 이벤트를 델리게이트에게 알려줌
+    * "앱이 해야하는 아주 중요하고 핵심적인 일, 즉 앱의 생명주기 관리나 이벤트 처리와 같은 것들을 담당"
+    
+  2. AppDelegate (회장님의 비서)
+    * 의도와 목적에 맞게 특별히 처리하기 위해 UIApplication 객체로부터 약간의 권한을 위임받은 객체
+    * 커스텀 코드와 상호작용하는 역할
+    * 앱 전체 수명 주기와 함께 함
+    * AppDelegate 객체에 데이터를 저장하면 앱이 종료될 때까지 데이터 유지 가능
+    * 오직 하나의 인스턴스만 생성되도록 시스템적으로 보장됨
+
+  ** 앱의 전체적인 실행 과정
+    (1) main 함수 호출
+    (2) UIApplicationMain 함수 호출
+    (3) UIApplication 객체 반환
+    (4) AppDelegate 객체를 생성하고 UIApplication 객체와 연결
+    (5) 이벤트 루프를 만드는 등 실행에 필요한 준비 진행 -> Main Run Loop 실행
+    (6) 실행완료 직전, application(_:didFinishLaunchingWithOptions:) 메서드 호출
+    -> 하지만 UIKit Framework가 main 함수를 관리하기 때문에 직접 main 함수를 작성하지 않고, @Main 어노테이션을 찾아서 AppDelegate 객체를 생성함
+ 
+   ** AppDelegate 객체의 메서드 호출
+    (1) application(_:willFinishLaunchingWithOptions_:) -> 필요한 주요 객체들을 생성하고, 앱 실행 준비가 끝나기 직전에 실행
+    (2) application(_:didFinishLaunchingWithOptions:) -> 앱 실행을 위한 모든 준비가 끝난 후, 화면이 사용자애개 보여지기 직전에 호출
+    (3) applicationWillTerminate(_:) -> 앱이 종료되기 직전에 호출
+    (4) sceneWillEnterForeground -> 앱이 background나 not running에서 foreground로 들어가기 직전에 호출
+    (5) sceneWillResignActive -> App Switcher 모드(위로 쓸어올렸을 떄, 홈버튼 두번 눌렀을 떄)
+    (6) applicationDidbecomeActive -> 앱이 비활성화 상태에서 활성화 상태로 진입하고 난 직후 호출
+    (7) applicationDidEnterBackground -> 앱이 background 상태로 들어갔을 때 호출
+
+# MVC 패턴
+  = Model + View + Controller
+  * Model: 데아터를 담당
+  * View: 데이터에 대한 화면 표현을 담당
+  * Controller: 모델과 뷰 사이에 위치하여 데이터를 뷰로 전달, 뷰에서 발생하는 이벤트 처리
+  
+# 앱의 상태 변화
+  * Not Running: 앱이 시작되지 않았거나, 실행되었지만 시스템에 의해 종료된 상태
+  * InActive: 전면에서 앱이 실행중이지만, 아무런 이벤트를 받고 있지 않은 상태
+  * Active: 앱이 전면에서 실행중이고, 이벤트를 받고 있는 상태
+  * Background: 앱이 백그라운드에 있지만, 여전히 코드가 실행되고 있는 상태
+  * Suspended: 앱이 메모리에 유지되지만 실행되는 코드가 없는 상태, 메모리가 부족한 상황이 오면 Suspend에 있는 앱들을 특별한 알림 없이 정리해서 메모리 확보
+  
+  Not Running -> InActive -> Acitve -> Background -> Suspended -> Not Running
