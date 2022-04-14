@@ -39,3 +39,13 @@
  > dismiss 되는 방식은 자신을 호출한 뷰컨에게 요청하는 형태. 즉 사라지게 하는 주체가 자신이 아닌 자신을 호출한 뷰컨트롤러이다.
  self.dismiss(animated:) (X)
  self.presentingViewController?.dismiss(animated:) (O) -> presentingViewController가 나를 호출한 뷰컨의 포인터를 가지고 있음
+ 
+ ## 화면 전환 처리
+  - 새로 표시할 뷰컨트롤러를 스토리 보드에서 읽어와 인스턴스화 하는 부분 필요
+  > self.storyboard!.instantiateViewController(withIdentifier: "[Storyboard ID]") -> self.storyboard: 기본 스토리보드 파일을 가져옴
+  ** modalTransitionStyle -> 어떤 스타일을 적용해서 전환할 것인지를 결정
+  
+  > coverVertical: 새로운 화면이 올라가면서 전환되는 효과 (기본 효과)
+  > crossDissolve: 두 화면이 교차하면서 전 화면이 사라지고 다음 화면이 뚜렷하게 나타나는 효과
+  > flipHorizontal: 화면 중앙 가상의 축을 기준으로 화면이 돌아가는 효과를 줌
+  > particalCurl: 오르쪽 아래 모서리에서 시작해 페이지가 말려 올라가는 효과를 줌. 이때 전환될 뷰컨은 presentationStyle이 무조건 fullScreen
