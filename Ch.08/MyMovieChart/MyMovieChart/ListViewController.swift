@@ -10,31 +10,92 @@ import UIKit
 
 class ListViewController: UITableViewController {
     
-    var dataSet = [
-        ("다크나이트", "영웅물에 철학에 음악까지 더해져 예술이 되다.", "2008-09-04", 8.95, "banana.png"),
-        ("호우시절", "때를 알고 내리는 좋은 비", "2009-10-08", 7.31, "kiwi.png"),
-        ("말할 수 없는 비밀", "여기서 너까지 다섯 걸음", "2015-05-07", 9.19, "mango.png")
-    ]
+    @IBOutlet var moreButton: UIButton!
+    
+    var page = 1
+//    var dataSet = [
+//        ("다크나이트", "영웅물에 철학에 음악까지 더해져 예술이 되다.", "2008-09-04", 8.95, "banana.png"),
+//        ("호우시절", "때를 알고 내리는 좋은 비", "2009-10-08", 7.31, "kiwi.png"),
+//        ("말할 수 없는 비밀", "여기서 너까지 다섯 걸음", "2015-05-07", 9.19, "mango.png")
+//    ]
     
     lazy var list: [MovieVO] = {
         var dataList = [MovieVO]()
-        for (title, desc, opendate, rating, thumbnail) in self.dataSet {
-            let mvo = MovieVO()
-            mvo.title = title
-            mvo.description = desc
-            mvo.opendate = opendate
-            mvo.rating = rating
-            mvo.thumbnail = thumbnail
-            
-            dataList.append(mvo)
-        }
+//        for (title, desc, opendate, rating, thumbnail) in self.dataSet {
+//            let mvo = MovieVO()
+//            mvo.title = title
+//            mvo.description = desc
+//            mvo.opendate = opendate
+//            mvo.rating = rating
+//            mvo.thumbnail = thumbnail
+//
+//            dataList.append(mvo)
+//        }
         
         return dataList
     }()
     
     override func viewDidLoad() {
         tableView.delegate = self
+        
+        //MARK: - RESTful API 호출
+        self.callMovieAPI()
+        
     }
+    
+    @IBAction func more(_ sender: UIButton) {
+        self.page += 1
+        self.callMovieAPI()
+        self.tableView.reloadData()
+    }
+    
+    private func callMovieAPI() {
+        let url = "http://swiftapi.rubypaper.co.kr:2029/hoppin/movies?version=1&page=\(self.page)&count=30&genreId=&order=releasedateasc"
+        
+        let apiURI: URL! = URL(string: url)
+        let apiData = try! Data(contentsOf: apiURI)
+        
+        let log = NSString(data: apiData, encoding: String.Encoding.utf8.rawValue) ?? "데이터가 없습니다"
+        
+        NSLog("API Result = \(log)")
+        
+        do {
+            let apiDictionary = try JSONSerialization.jsonObject(with: apiData, options: []) as! NSDictionary
+            
+            let hoppin = apiDictionary["hoppin"] as! NSDictionary
+            let movies = hoppin["movies"] as! NSDictionary
+            let movie = movies["movie"] as! NSArray
+            
+            for row in movie {
+                let r = row as! NSDictionary
+                
+                
+                
+                let mvo = MovieVO()
+                mvo.title = r["title"] as? String
+                mvo.description = r["genreNames"] as? String
+                mvo.thumbnail = r["thumbnailImage"] as? String
+                mvo.detail = r["linkUrl"] as? String
+                mvo.rating = ((r["ratingAverage"] as! NSString).doubleValue)
+                
+                let url: URL! = URL(string: mvo.thumbnail!)
+                let imageData = try! Data(contentsOf: url)
+                mvo.thumbnailImage = UIImage(data: imageData)
+                
+                self.list.append(mvo)
+                
+                let totalCount = ((hoppin["totalCount"] as? NSString)!.integerValue)
+                
+                if self.list.count >= totalCount {
+                    self.moreButton.isHidden = true
+                }
+                
+            }
+        } catch {
+            
+        }
+    }
+    
     
     //MARK: - 생성해야 할 행의 개수를 반환하는 메소드
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +106,7 @@ class ListViewController: UITableViewController {
     //MARK: - 테이블 뷰 행을 구성하는 메소드
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = self.list[indexPath.row]
+        NSLog("제목: \(row.title!) 호출된 행번호: \(indexPath.row)")
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
         //dequeueReusableCell: 인자값으로 입력받은 아이디를 이용해서 스토리보드에 정의된 프로토타입 셀을 찾고 인스턴스로 생성하여 제공함
         
@@ -76,9 +138,30 @@ class ListViewController: UITableViewController {
         cell.desc.text = row.description
         cell.openDate.text = row.opendate
         cell.rating.text = "\(row.rating!)"
-        cell.thumbnail.image = UIImage(named: row.thumbnail!)
+        
+//        let url: URL! = URL(string: row.thumbnail!)
+//        let imageData = try! Data(contentsOf: url)
+//        cell.thumbnail.image = row.thumbnailImage
+        
+        //MARK: - 비동기 방식으로 처리
+        DispatchQueue.main.async {
+            cell.thumbnail.image = self.getThumbnailImage(indexPath.row)
+        }
         
         return cell
+    }
+    
+    private func getThumbnailImage(_ index: Int) -> UIImage {
+        let mvo = self.list[index]
+        
+        if let savedImage = mvo.thumbnailImage {
+            return savedImage
+        } else {
+            let url: URL! = URL(string: mvo.thumbnail!)
+            let data = try! Data(contentsOf: url)
+            mvo.thumbnailImage = UIImage(data: data)
+            return mvo.thumbnailImage!
+        }
     }
     
     //MARK: - 테이블 셀을 클릭하거나 터치했을 때 액션 처리를 위한 메서드
