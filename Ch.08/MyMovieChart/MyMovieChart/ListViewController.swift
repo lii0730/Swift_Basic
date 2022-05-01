@@ -69,13 +69,12 @@ class ListViewController: UITableViewController {
             for row in movie {
                 let r = row as! NSDictionary
                 
-                
-                
                 let mvo = MovieVO()
                 mvo.title = r["title"] as? String
                 mvo.description = r["genreNames"] as? String
                 mvo.thumbnail = r["thumbnailImage"] as? String
                 mvo.detail = r["linkUrl"] as? String
+                
                 mvo.rating = ((r["ratingAverage"] as! NSString).doubleValue)
                 
                 let url: URL! = URL(string: mvo.thumbnail!)
@@ -201,6 +200,18 @@ class ListViewController: UITableViewController {
             return 300
         default:
             return 80
+        }
+    }
+}
+
+extension ListViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue_detail" {
+            let path = self.tableView.indexPath(for: sender as! MovieCell)
+            
+            let detailVC = segue.destination as? DetailViewController
+            
+            detailVC?.mvo = self.list[path!.row]
         }
     }
 }

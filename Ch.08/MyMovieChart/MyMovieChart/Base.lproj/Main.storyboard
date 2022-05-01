@@ -3,6 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,6 +73,7 @@
                                     <outlet property="rating" destination="CrK-Qs-SHF" id="vBh-sJ-lQT"/>
                                     <outlet property="thumbnail" destination="U40-Aj-7qT" id="Mp0-tc-d90"/>
                                     <outlet property="title" destination="Wcj-xY-sHP" id="n7S-cP-FZJ"/>
+                                    <segue destination="HTD-Tw-d3v" kind="show" identifier="segue_detail" id="mQE-y3-lLa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -89,6 +91,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p09-V1-ouN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="826.39999999999998" y="103.44827586206897"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="pQL-qv-2Gs">
+            <objects>
+                <viewController id="HTD-Tw-d3v" customClass="DetailViewController" customModule="MyMovieChart" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6TH-ax-ajD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdY-dR-KTd">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="G3f-tD-Z9Q">
+                                <rect key="frame" x="169" y="414.66666666666669" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8gK-Cx-Vjx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8gK-Cx-Vjx" firstAttribute="bottom" secondItem="gdY-dR-KTd" secondAttribute="bottom" id="3EA-EV-HXH"/>
+                            <constraint firstItem="8gK-Cx-Vjx" firstAttribute="trailing" secondItem="gdY-dR-KTd" secondAttribute="trailing" id="3OJ-d4-W7x"/>
+                            <constraint firstItem="G3f-tD-Z9Q" firstAttribute="centerX" secondItem="gdY-dR-KTd" secondAttribute="centerX" id="AuE-ys-Jei"/>
+                            <constraint firstItem="gdY-dR-KTd" firstAttribute="top" secondItem="8gK-Cx-Vjx" secondAttribute="top" id="Wrg-hI-fUH"/>
+                            <constraint firstItem="gdY-dR-KTd" firstAttribute="leading" secondItem="8gK-Cx-Vjx" secondAttribute="leading" id="a9U-jM-tp5"/>
+                            <constraint firstItem="G3f-tD-Z9Q" firstAttribute="centerY" secondItem="gdY-dR-KTd" secondAttribute="centerY" id="pig-ow-zvt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="4pa-jf-5sf"/>
+                    <connections>
+                        <outlet property="spinner" destination="G3f-tD-Z9Q" id="Ouf-MT-uED"/>
+                        <outlet property="wv" destination="gdY-dR-KTd" id="zVK-QN-sfw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Szj-lV-OKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="126"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BCF-XV-twt">

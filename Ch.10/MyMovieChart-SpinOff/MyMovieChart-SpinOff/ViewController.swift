@@ -27,9 +27,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        var content = cell.defaultContentConfiguration()
-        content.text = "\(indexPath.row)번째 데이터입니다."
-        cell.contentConfiguration = content
+//        var content = cell.defaultContentConfiguration()
+//        content.text = "\(indexPath.row)번째 데이터입니다."
+//        cell.contentConfiguration = content
+        cell.textLabel?.text = "Hello"
+        cell.detailTextLabel?.text = "world"
         return cell
     }
 }
