@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99840738282022D500C8B9D8 /* SelectedBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99840737282022D500C8B9D8 /* SelectedBookCell.swift */; };
 		99901761281E45DB005E30D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99901760281E45DB005E30D8 /* AppDelegate.swift */; };
 		99901763281E45DB005E30D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99901762281E45DB005E30D8 /* SceneDelegate.swift */; };
 		99901768281E45DB005E30D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99901766281E45DB005E30D8 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99840737282022D500C8B9D8 /* SelectedBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookCell.swift; sourceTree = "<group>"; };
 		9990175D281E45DB005E30D8 /* MiddleP-Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiddleP-Books.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99901760281E45DB005E30D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99901762281E45DB005E30D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				99901776281E53B8005E30D8 /* BookCell.swift */,
 				99901778281E5513005E30D8 /* BookListViewController.swift */,
 				9990177A281E555E005E30D8 /* MyPageViewController.swift */,
+				99840737282022D500C8B9D8 /* SelectedBookCell.swift */,
 			);
 			path = "MiddleP-Books";
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				9990177B281E555E005E30D8 /* MyPageViewController.swift in Sources */,
 				99901761281E45DB005E30D8 /* AppDelegate.swift in Sources */,
 				99901763281E45DB005E30D8 /* SceneDelegate.swift in Sources */,
+				99840738282022D500C8B9D8 /* SelectedBookCell.swift in Sources */,
 				99901777281E53B8005E30D8 /* BookCell.swift in Sources */,
 				99901779281E5513005E30D8 /* BookListViewController.swift in Sources */,
 			);
