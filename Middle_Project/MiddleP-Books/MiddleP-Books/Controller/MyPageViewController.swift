@@ -9,9 +9,15 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol DeleteDelegate {
+    func Deleted(book: Book)
+}
+
 class MyPageViewController: UIViewController {
     
     var bookList: [Book]?
+    
+    var delegate: DeleteDelegate?
     
     lazy var emptyTextLabel: UILabel = {
         let label = UILabel()
@@ -61,6 +67,8 @@ class MyPageViewController: UIViewController {
         layoutSubView()
         
         tableView.register(SelectedBookCell.self, forCellReuseIdentifier: "SelectedBookCell")
+        tableView.rowHeight = 120
+        
     }
 }
 
@@ -78,22 +86,28 @@ extension MyPageViewController: UITableViewDataSource {
         
         guard let bookList = self.bookList else { return UITableViewCell() }
         let book = bookList[indexPath.row]
+        
         cell.bookImageView.image = UIImage(named: book.imageURL)
         cell.titleLabel.text = book.title
-        cell.deleteButton.addTarget(self, action: #selector(OnClick), for: .touchUpInside)
+        
+        cell.deleteButton.tag = indexPath.row
+        cell.deleteButton.addTarget(self, action: #selector(OnClick(_:)), for: .touchUpInside)
         
         return cell
     }
 }
 
-extension MyPageViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-}
-
 extension MyPageViewController {
-    @objc func OnClick() {
+    @objc func OnClick(_ sender: UIButton) {
+        let deletedBook = self.bookList?.remove(at: sender.tag)
         
+        guard var book = deletedBook else { return }
+        book.isGood = false
+        delegate?.Deleted(book: book)
+        self.tableView.reloadData()
+        
+        if(self.bookList?.count == 0) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }

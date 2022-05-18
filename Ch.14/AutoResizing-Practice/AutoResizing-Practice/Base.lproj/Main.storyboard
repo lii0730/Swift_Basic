@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w0D-ca-lP8">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <accessibilityOverrides dynamicTypePreference="2"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AutoResizing_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTz-7R-u1D" userLabel="View B">
+                                <rect key="frame" x="217" y="20" width="188" height="327"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDf-Te-rFO" userLabel="View C">
+                                <rect key="frame" x="12" y="369.66666666666674" width="393" height="326.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5n-rM-yYk" userLabel="View A">
+                                <rect key="frame" x="9" y="20" width="189" height="327"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dTz-7R-u1D" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="4vy-IX-5Gb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dTz-7R-u1D" secondAttribute="trailing" constant="9" id="8H2-oL-YKY"/>
+                            <constraint firstItem="Y5n-rM-yYk" firstAttribute="width" secondItem="dTz-7R-u1D" secondAttribute="width" id="DAR-Aq-iC4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eDf-Te-rFO" secondAttribute="trailing" constant="9" id="J3g-0a-Eho"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eDf-Te-rFO" secondAttribute="bottom" constant="40" id="OA9-Gf-mzc"/>
+                            <constraint firstItem="Y5n-rM-yYk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="S0G-z4-oai"/>
+                            <constraint firstItem="Y5n-rM-yYk" firstAttribute="height" secondItem="eDf-Te-rFO" secondAttribute="height" id="TRD-k2-O7h"/>
+                            <constraint firstItem="eDf-Te-rFO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="Ya8-6E-WSs"/>
+                            <constraint firstItem="Y5n-rM-yYk" firstAttribute="height" secondItem="dTz-7R-u1D" secondAttribute="height" id="gX6-Ul-3T2"/>
+                            <constraint firstItem="eDf-Te-rFO" firstAttribute="top" secondItem="Y5n-rM-yYk" secondAttribute="bottom" constant="23" id="hGI-JW-pHo"/>
+                            <constraint firstItem="dTz-7R-u1D" firstAttribute="leading" secondItem="Y5n-rM-yYk" secondAttribute="trailing" constant="19" id="n5s-5E-KSM"/>
+                            <constraint firstItem="Y5n-rM-yYk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="tMS-AL-AKw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-239" y="64"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="67d-m6-EKV">
+            <objects>
+                <viewController id="w0D-ca-lP8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B3b-Qu-9oe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltd-e7-NLA" userLabel="View A">
+                                <rect key="frame" x="9" y="20" width="189" height="327"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SdL-ic-hR9" userLabel="View B">
+                                <rect key="frame" x="217" y="20" width="188" height="327"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoR-Id-dgQ" userLabel="View C">
+                                <rect key="frame" x="12" y="369.66666666666663" width="393" height="326.66666666666663"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4Il-EK-VaP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ltd-e7-NLA" firstAttribute="leading" secondItem="4Il-EK-VaP" secondAttribute="leading" constant="9" id="07k-n5-RYM"/>
+                            <constraint firstItem="4Il-EK-VaP" firstAttribute="trailing" secondItem="AoR-Id-dgQ" secondAttribute="trailing" constant="9" id="8CP-G2-OIT"/>
+                            <constraint firstItem="ltd-e7-NLA" firstAttribute="top" secondItem="4Il-EK-VaP" secondAttribute="top" constant="20" id="Hy3-mL-igK"/>
+                            <constraint firstItem="SdL-ic-hR9" firstAttribute="height" secondItem="ltd-e7-NLA" secondAttribute="height" id="TGL-2g-JKN"/>
+                            <constraint firstItem="AoR-Id-dgQ" firstAttribute="top" secondItem="ltd-e7-NLA" secondAttribute="bottom" constant="23" id="dkF-Qz-wvn"/>
+                            <constraint firstItem="SdL-ic-hR9" firstAttribute="top" secondItem="4Il-EK-VaP" secondAttribute="top" constant="20" id="fTb-S4-EAn"/>
+                            <constraint firstItem="SdL-ic-hR9" firstAttribute="leading" secondItem="ltd-e7-NLA" secondAttribute="trailing" constant="19" id="iDF-iz-rFf"/>
+                            <constraint firstItem="AoR-Id-dgQ" firstAttribute="leading" secondItem="4Il-EK-VaP" secondAttribute="leading" constant="12" id="kNG-8u-6fo"/>
+                            <constraint firstItem="4Il-EK-VaP" firstAttribute="trailing" secondItem="SdL-ic-hR9" secondAttribute="trailing" constant="9" id="okI-f0-PtC"/>
+                            <constraint firstItem="SdL-ic-hR9" firstAttribute="width" secondItem="ltd-e7-NLA" secondAttribute="width" id="pNd-Hi-bGh"/>
+                            <constraint firstItem="4Il-EK-VaP" firstAttribute="bottom" secondItem="AoR-Id-dgQ" secondAttribute="bottom" constant="39.670000000000002" id="smY-Rb-H4D"/>
+                            <constraint firstItem="AoR-Id-dgQ" firstAttribute="height" secondItem="ltd-e7-NLA" secondAttribute="height" id="zdH-hn-Zdp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lt0-GD-FqP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="65"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

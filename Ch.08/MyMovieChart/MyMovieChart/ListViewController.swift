@@ -105,7 +105,7 @@ class ListViewController: UITableViewController {
     //MARK: - 테이블 뷰 행을 구성하는 메소드
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = self.list[indexPath.row]
-        NSLog("제목: \(row.title!) 호출된 행번호: \(indexPath.row)")
+//        NSLog("제목: \(row.title!) 호출된 행번호: \(indexPath.row)")
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
         //dequeueReusableCell: 인자값으로 입력받은 아이디를 이용해서 스토리보드에 정의된 프로토타입 셀을 찾고 인스턴스로 생성하여 제공함
         

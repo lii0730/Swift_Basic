@@ -9,7 +9,20 @@ import Foundation
 import UIKit
 
 
-class BookListViewController: UITableViewController {
+class BookListViewController: UITableViewController, DeleteDelegate {
+    func Deleted(book: Book) {
+        let index = self.bookList.firstIndex { b in
+            b.title == book.title
+        }
+        
+        guard let index = index else {
+            return
+        }
+
+        self.bookList[index] = book
+        self.tableView.reloadData()
+    }
+    
     
     var bookList: [Book] = Book.Dummy()
     
@@ -24,6 +37,8 @@ class BookListViewController: UITableViewController {
         myPageVC.bookList = self.bookList.filter({ book in
             book.isGood
         })
+        
+        myPageVC.delegate = self
         
         self.navigationController?.pushViewController(myPageVC, animated: true)
     }
